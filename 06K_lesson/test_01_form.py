@@ -5,11 +5,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-driver = webdriver.Chrome(
-    service=ChromeService(ChromeDriverManager().install()))
-#Настройка ожидания
-wait = WebDriverWait(driver, 10)
-#Вход на сайт
+driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+wait = WebDriverWait(driver, 10)    
+    #Вход на сайт
 driver.get("https://bonigarcia.dev/selenium-webdriver-java/data-types.html")
 
 
@@ -46,7 +44,7 @@ assert 'alert-danger' in zip_code_input.get_attribute('class'), 'Поле Zip Co
 # Проверки, что остальные поля подсвечены зеленым
 fields_to_check = [
     fname_input, lname_input, address_input, email_input, phone_input, city_input, jobpos_input, company_input
-]
+    ]
 for field in fields_to_check:
     assert 'alert-success' in field.get_attribute('class'), f'Поле {field.get_attribute("id")} не подсвечено зеленым'
 

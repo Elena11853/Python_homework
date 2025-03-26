@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 driver = webdriver.Chrome(
     service=ChromeService(ChromeDriverManager().install()))
-wait = WebDriverWait(driver, 30)
+wait = WebDriverWait(driver, 10)
 
 #Вход на сайт
 driver.get("https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html")
