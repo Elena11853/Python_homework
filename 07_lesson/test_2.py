@@ -4,10 +4,10 @@ from webdriver_manager.chrome import ChromeDriverManager
 from login import Login
 from main_page import Main_page
 from cart_checkout import Cart_checkout
-from total_cost import Total_cost
+from total_label import Total_label
 
 
-def test_total_score():
+def test_2():
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     login = Login(driver)
     login.login_page()
@@ -16,7 +16,7 @@ def test_total_score():
     cart_chekcout = Cart_checkout(driver)
     cart_chekcout.Cart()
     cart_chekcout.Checkout_info()
-    total_cost  = Total_cost(driver)
-    total_cost.Total_cost()
+    total_cost  = Total_label(driver)
+    total_cost.Total_label()
 
     

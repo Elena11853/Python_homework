@@ -5,10 +5,10 @@ class Cart_checkout:
         self._driver = driver
 
     def Cart(self):
-        self._driver.find_element(By.CSS_SELECTOR, '#checkout').click() 
+        self._driver.find_element(By.ID, 'checkout').click() 
 
     def Checkout_info(self):
-         self._driver.find_element(By.ID, "last-name").send_keys("Елена")
-         self._driver.find_element(By.ID, "postal-code").send_keys("Семенкова")
+         self._driver.find_element(By.ID, "first-name").send_keys("Елена")
+         self._driver.find_element(By.ID, "last-name").send_keys("Семенкова")
          self._driver.find_element(By.ID, "postal-code").send_keys('162250')
          self._driver.find_element(By.ID, "continue").click()

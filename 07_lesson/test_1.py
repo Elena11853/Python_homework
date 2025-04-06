@@ -4,7 +4,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from calculator_pages import Calculator_pages
 
 
-def test_HW2():
+def test_1():
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     calculator_pages = Calculator_pages(driver)
     calculator_pages.start_testing(driver)
