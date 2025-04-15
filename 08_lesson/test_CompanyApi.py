@@ -1,54 +1,50 @@
 import requests
 
-class CompanyApi:
-    def __init__(self, url) -> None:
-        self.url = url
+key = '0TK5pyfNGd2rdEjhVS0iqLPV1HdRSYTQeKEc7oduyvdkFbtzxuCQ-I0bq0yfQCKc'
+Base_url = 'https://yougile.com'
+headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + key
+    }
+id_project = "0086018b-cb2a-4301-8d92-5fcf34ffaa44"
 
-    #my_company_id = 'fcfc8fc7-77eb-4b3f-9c08-84b7323c02ae'
-
-    def get_a_list(self, my_login, my_password):
-        creds = {
-            'login': my_login('text'),
-            'password': my_password,
+#позитивный (Создание проекта)
+def test_creating_a_project_positive():
+    body = {
+        'title': 'Test1'
         }
-        resp = requests.post(self.url + '/api-v2/auth/companies', json=creds)
-        my_company_id= resp.json()["id"]
-        return my_company_id()
-
-    # Получить токен авторизации
-    def authorization_key(self, my_login, my_password, my_company_id):
-        creds = {
-            'login': my_login,
-            'password': my_password,
-            'companyId': my_company_id
-            }
-        resp = requests.post(self.url + '/api-v2/auth/keys/get', json=creds)
-        Bearer = resp.json()["key"]
-        return Bearer()
-
-    # Создание проекта
-    def creating_a_project(self, title = 'text'):
-        project = {
-        'title': title    
+    resp = requests.post(Base_url + '/api-v2/projects', json = body, headers = headers)
+    assert resp.status_code == 201
+#негативный тест(проект без названия)
+def test_creating_a_project_negative():
+    body = {
+        'title': ''
         }
-        resp = requests.post(self.url + '/api-v2/projects', json=project)
-        id_project = resp.json()["id"]
-        return id_project()
-    
-    #Получение по id
-    def get_by_id(self):
-        resp = requests.get(self.url + '/api-v2/projects/{id_project}, params=params_to_add')
-        return resp.json()["id"]
+    resp = requests.post(Base_url + '/api-v2/projects', json=body, headers=headers)
+    assert resp.status_code == 400
 
-    
-    #Изменение проекта
-    def changing_the_project(self, title = 'text'):
-        modified_project = {
-        'title': title
-        }
-        resp = requests.put(self.url + '/api-v2/projects/{id}', json = modified_project)
-        return resp.json()["id"]
-       
-    
+# позитивный (Получение по id)
+def test_get_by_id_positive_positive():
+    resp = requests.get(f"{Base_url}/api-v2/projects/{id_project}", headers = headers)
+    assert resp.status_code == 200
 
+# негативный (несуществующий id)
+def test_get_by_id_negative():
+    resp = requests.get(f"{Base_url}/api-v2/projects/{123}", headers=headers)
+    assert resp.status_code == 404
 
+# позитивный (Изменение проекта)
+def test_changing_the_project_positive():
+    body = {
+    'title': 'to change'
+    }
+    resp = requests.put(f"{Base_url}/api-v2/projects/{id_project}", json = body, headers = headers)
+    assert resp.status_code == 200
+
+#негативный (метод post, вместо put)
+def test_changing_the_project_negative():
+    body = {
+    'title': 'to change'
+    }
+    resp = requests.post(f"{Base_url}/api-v2/projects/{id_project}", json = body, headers = headers)
+    assert resp.status_code == 404
