@@ -1,20 +1,30 @@
 import requests
 
 class CompanyApi:
-
-    # Инициализация
     def __init__(self, url) -> None:
         self.url = url
 
-    # Получить токен авторизации
-    def authorization_key(self, login, password, company_id):
+    #my_company_id = 'fcfc8fc7-77eb-4b3f-9c08-84b7323c02ae'
+
+    def get_a_list(self, my_login, my_password):
         creds = {
-            'login': login,
-            'password': password,
-            'companyId': company_id
+            'login': my_login('text'),
+            'password': my_password,
+        }
+        resp = requests.post(self.url + '/api-v2/auth/companies', json=creds)
+        my_company_id= resp.json()["id"]
+        return my_company_id()
+
+    # Получить токен авторизации
+    def authorization_key(self, my_login, my_password, my_company_id):
+        creds = {
+            'login': my_login,
+            'password': my_password,
+            'companyId': my_company_id
             }
         resp = requests.post(self.url + '/api-v2/auth/keys/get', json=creds)
-        return resp.json()["key"]
+        Bearer = resp.json()["key"]
+        return Bearer()
 
     # Создание проекта
     def creating_a_project(self, title = 'text'):
