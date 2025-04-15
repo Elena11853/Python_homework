@@ -1,12 +1,12 @@
 import requests
 
-key = '0TK5pyfNGd2rdEjhVS0iqLPV1HdRSYTQeKEc7oduyvdkFbtzxuCQ-I0bq0yfQCKc'
+key = ''
 Base_url = 'https://yougile.com'
 headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + key
     }
-id_project = "0086018b-cb2a-4301-8d92-5fcf34ffaa44"
+id_project = ""
 
 #позитивный (Создание проекта)
 def test_creating_a_project_positive():
