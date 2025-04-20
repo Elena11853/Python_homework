@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.sql import text
 
-db_connection_string = "postgresql://postgres:Beklin@localhost:5432/QA"
+
 
 def test_insert():
     db = create_engine(db_connection_string)
