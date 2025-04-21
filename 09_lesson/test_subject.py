@@ -1,14 +1,14 @@
 from sqlalchemy import create_engine
 from sqlalchemy.sql import text
 
-
+db_connection_string = "postgresql://postgres:Beklin@5.101.50.27:5432/QA"
 
 def test_insert():
     db = create_engine(db_connection_string)
     connection = db.connect()
-    sql_query = text("INSERT INTO subject (subject_title, subject_id) VALUES (:subject_title, :id)")
+    sql_query = text("INSERT INTO subject (subject_title, subject_id) VALUES (:title, :id)")
     #rows = db.execute(sql, title = 'Russian checkers', id =17)
-    connection.execute(sql_query, {subject_title:'Test', id: 17 })
+    connection.execute(sql_query, {"title":'Test', "id": 17 })
 
 #sql = text("insert into company(\"name\") values (:new_name)")
 
