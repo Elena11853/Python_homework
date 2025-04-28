@@ -18,7 +18,7 @@ def test_calculator():
         calculator = Calculator_pages(browser)
 
     with allure.step("Ввод в поле значение 45"):
-        calculator.delay('1')
+        calculator.delay('45')
 
     with allure.step("Нажимаем на кнопки 7+8="):
         calculator.click('7')
