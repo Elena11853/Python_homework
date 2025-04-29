@@ -4,7 +4,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 from calculator_pages import Calculator_pages
 import allure
 
-
 @allure.title("Проверка калькулятора")
 @allure.description("Результат должен отобразиться через 45 секунд")
 @allure.feature("FUNCTIONALITY")
@@ -31,6 +30,6 @@ def test_calculator():
 
     with allure.step("Проверка ответа"):
         assert screen == '15'
-
+    
     with allure.step("Закрытие браузера"):
         browser.quit()
